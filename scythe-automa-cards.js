@@ -20,23 +20,23 @@ var cards = [{
         type: 'character'
       }
     ],
-    gets: {
-      power: 1,
-      worker: 1
-    },
-    enlist: {
-      power: 1
-    }
+    gets: [{
+      type: 'power',
+      quantity: 1
+    },{
+      type: 'worker',
+      quantity: 1
+    }],
+    enlist: ['power']
   },{
     move: [{
       type: 'worker'
     }],
-    gets: {
-      power: 4
-    },
-    enlist: {
-      power: 1
-    }
+    gets: [{
+      type: 'power',
+      quantity: 4
+    }],
+    enlist: ['power']
   }],
   combat: {
     spend: [6, 7, 7],
