@@ -43,16 +43,18 @@ var renderEnlistAction = function(card, phase, index) {
 };
 
 var renderGetsAction = function(card, phase, index) {
-  var fac = card.actions[phase].gets[index].faction;
-  var type = card.actions[phase].gets[index].type;
-  var qty = card.actions[phase].gets[index].quantity;
+  var pac = card.actions[phase].gets[index];
+  var fac = pac.faction;
+  var type = pac.type;
+  var qty = pac.quantity;
   fac = fac ? ('If you are ' + fac+ ' faction, gain ') : 'gain ';
   return fac + qty + ' ' + type;
 };
 
 var renderMoveAction = function(card, phase, index) {
-  var fac = card.actions[phase].move[index].faction;
-  var type = card.actions[phase].move[index].type;
+  var pac = card.actions[phase].move[index];
+  var fac = pac.faction;
+  var type = pac.type;
   fac = fac ? ('If you are ' + fac+ ' faction, move ') : 'move ';
   return fac + type;
 };
@@ -83,7 +85,6 @@ var renderNormal = function(card) {
     htmlGets = '';
     htmlEnlist = '';
   } else {
-
     htmlMove = renderActionSet(card, phase, countMoveActions,
       renderMoveAction, '<br />', '; otherwise');
     htmlGets = renderActionSet(card, phase, countGetsActions,
@@ -91,13 +92,12 @@ var renderNormal = function(card) {
     htmlEnlist = renderActionSet(card, phase, countEnlistActions,
       renderEnlistAction, '', ',');
   }
+
   document.getElementById('normalCard-actions-move').innerHTML = htmlMove;
   document.getElementById('normalCard-actions-gets').innerHTML = htmlGets;
   document.getElementById('normalCard-actions-enlist').innerHTML = htmlEnlist;
   document.getElementById('deck-count').innerHTML = deck.length;
   document.getElementById('card-count').innerHTML = cards.length;
-
-  // TODO: Card count
 
 };
 
@@ -128,6 +128,7 @@ var startGame = function() {
   document.getElementById('normalCard-actions-move').innerHTML = '';
   document.getElementById('normalCard-actions-gets').innerHTML = '';
   document.getElementById('normalCard-actions-enlist').innerHTML = '';
+  document.getElementById('phase').innerHTML = 'I';
   document.getElementById('deck-count').innerHTML = cards.length;
   document.getElementById('card-count').innerHTML = cards.length;
 }
@@ -136,7 +137,9 @@ var normalCard = function() {
   var card = takeCard();
   tracker++;
   phase = phase == 1 ? 1 : profile.grid[tracker] == 2 ? 1 : 0;
-  console.log(phase);
+  document.getElementById('phase').innerHTML = (phase == 0) ? 'I' : 'II';
+  // TODO: End game
+  // TODO: Chane color of cards
   renderNormal(card);
   discards.main.push(card);
 };

@@ -14,24 +14,25 @@
       <div class="level">
         <button class="button is-default" onClick="normalCard();">Play Card</button>
         <button class="button is-default" onClick="combatCard();">Combat Card</button>
+        <div class="is-pulled-right">Phase <span id="phase"></span></div>
       </div>
     </div>
     <div class="spacer-20"></div>
     <div class="container">
       <div id="normalCard">
-        <article class="message">
+        <article class="message is-success">
           <div class="message-header">Movement</div>
           <div class="message-body">
             <div id="normalCard-actions-move"></div>
           </div>
         </article>
-        <article class="message">
+        <article class="message is-success">
           <div class="message-header">Gains</div>
           <div class="message-body">
             <div id="normalCard-actions-gets"></div>
           </div>
         </article>
-        <article class="message">
+        <article class="message is-success">
           <div class="message-header">Recruit Bonus</div>
           <div class="message-body">
             <div id="normalCard-actions-enlist"></div>
@@ -46,6 +47,7 @@
       <div class="level">
         <span id="deck-count">0</span>/<span id="card-count">0</span> cards left
         <button class="button is-danger is-pulled-right" onClick="startGame();">Reset Game</button>
+
       </div>
     </div>
   </section>
