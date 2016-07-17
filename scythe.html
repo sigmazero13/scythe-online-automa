@@ -1,31 +1,54 @@
 <html>
 <head>
   <title>Scythe - Online Automa</title>
+  <link rel="stylesheet" type="text/css" href="bulma.css">
   <style>
-    label {
-      font-weight: bold;
-    }
-    .action {
-      padding-left: 10px;
+    .spacer-20 {
+      height: 20px;
     }
   </style>
 </head>
 <body>
-
-  <div id="normalCard">
-    <h2>Active Card</h2>
-    <h3>Move</h3>
-    <div id="normalCard-actions-move" class="action"></div>
-    <h3>Gets</h3>
-    <div id="normalCard-actions-gets" class="action"></div>
-    <h3>Enlist Bonus</h3>
-    <div id="normalCard-actions-enlist" class="action"></div>
-  </div>
-  <div id="combatCard">
-    <h2>Combat Card</h2>
-  </div>
-  <button onClick="normalCard();">Play Card</button>
-  <button onClick="combatCard();">Combat Card</button>
+  <section class="section">
+    <div class="container">
+      <div class="level">
+        <button class="button is-default" onClick="normalCard();">Play Card</button>
+        <button class="button is-default" onClick="combatCard();">Combat Card</button>
+      </div>
+    </div>
+    <div class="spacer-20"></div>
+    <div class="container">
+      <div id="normalCard">
+        <article class="message">
+          <div class="message-header">Movement</div>
+          <div class="message-body">
+            <div id="normalCard-actions-move"></div>
+          </div>
+        </article>
+        <article class="message">
+          <div class="message-header">Gains</div>
+          <div class="message-body">
+            <div id="normalCard-actions-gets"></div>
+          </div>
+        </article>
+        <article class="message">
+          <div class="message-header">Recruit Bonus</div>
+          <div class="message-body">
+            <div id="normalCard-actions-enlist"></div>
+          </div>
+        </article>
+      </div>
+      <div id="combatCard">
+      </div>
+    </div>
+    <div class="spacer-20"></div>
+    <div class="container">
+      <div class="level">
+        <span id="deck-count">0</span>/<span id="card-count">0</span> cards left
+        <button class="button is-danger is-pulled-right" onClick="startGame();">Reset Game</button>
+      </div>
+    </div>
+  </section>
   <script src="./scythe-automa-cards.js"></script>
   <script src="./scythe-automa.js"></script>
 </body>
