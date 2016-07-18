@@ -51,73 +51,79 @@
     .message-body {
       color: #444 !important;
     }
+    .container {
+      max-width: 505px !important;
+    }
   </style>
 </head>
 <body>
   <section class="section">
-    <div class="container is-clearfix">
-      <p class="control">
-        <span class="select is-pulled-left">
-          <select value="_" id="difficulty" onChange="selectDifficulty();">
-            <option disabled="disabled">Select difficulty...</option>
-            <option value="easy">Autometta (easy)</option>
-            <option value="normal" selected>Automa (normal)</option>
-            <option value="hard">Automaszyna (hard)</option>
-            <option value="very hard">Ultimaszyna (very hard)</option>
-          </select>
-        </span>
-      </p>
-      <a class="button is-danger is-pulled-right" onClick="resetGame();">Reset</a>
-      <a id="start" class="button is-default is-pulled-right" onClick="startGame();">Start</a>
-    </div>
-    <div class="container is-clearfix">
-      <p>
-        <div class="level">
-          <div class="is-pulled-left"><span id="phase"></span></div>
-          <div class="is-pulled-right"><span id="stars">&#9734; &#9734; &#9734; &#9734; &#9734; &#9734;</span></div>
-        </div>
-      </p>
-    </div>
-    <div class="container">
-      <div id="normalCard">
-        <article class="acard message is-success">
-          <div class="message-header">Movement (<span id="river-state"></span> cross rivers)</div>
-          <div class="message-body">
-            <div id="normalCard-actions-move"></div>
-          </div>
-        </article>
-        <article class="acard message is-success">
-          <div class="message-header">Gains</div>
-          <div class="message-body">
-            <div id="normalCard-actions-gets"></div>
-          </div>
-        </article>
-        <article id="acard-recruit" class="acard message is-success">
-          <div class="message-header">Recruit Bonus</div>
-          <div class="message-body">
-            <div id="normalCard-actions-enlist"></div>
-          </div>
-        </article>
-        <article class="ccard message is-warning">
-          <div class="message-header">Combat Card</div>
-          <div class="message-body">
-            <div id="combat-card-actions"></div>
-          </div>
-        </article>
-      </div>
-    </div>
-    <div class="spacer-20"></div>
-    <div class="container is-clearfix">
-      <div class="level">
-        <a id="playcard" class="button is-default is-pulled-left" disabled="disabled" onClick="normalCard();">Play Card</a>
-        <a id="playcombatcard" class="button is-default is-pulled-right" disabled="disabled" onClick="combatCard();">Play Combat Card</a>
-      </div>
-    </div>
-    <div class="container">
-      <div class="level">
-        <p>
-          <small><em><span id="deck-count">0</span>/<span id="card-count">0</span> cards left</em></small>
+    <div class="columns">
+      <div class="column is-half is-offset-one-quarter">
+      <div class="container is-clearfix">
+        <p class="control">
+          <span class="select is-pulled-left">
+            <select value="_" id="difficulty" onChange="selectDifficulty();">
+              <option disabled="disabled">Select difficulty...</option>
+              <option value="easy">Autometta (easy)</option>
+              <option value="normal" selected>Automa (normal)</option>
+              <option value="hard">Automaszyna (hard)</option>
+              <option value="very hard">Ultimaszyna (very hard)</option>
+            </select>
+          </span>
         </p>
+        <a class="button is-danger is-pulled-right" onClick="resetGame();">Reset</a>
+        <a id="start" class="button is-default is-pulled-right" onClick="startGame();">Start</a>
+      </div>
+      <div class="container is-clearfix">
+        <p>
+          <div class="level">
+            <div class="is-pulled-left"><span id="phase"></span></div>
+            <div class="is-pulled-right"><span id="stars">&#9734; &#9734; &#9734; &#9734; &#9734; &#9734;</span></div>
+          </div>
+        </p>
+      </div>
+      <div class="container">
+        <div id="normalCard">
+          <article class="acard message is-success">
+            <div class="message-header">Movement (<span id="river-state"></span> cross rivers)</div>
+            <div class="message-body">
+              <div id="normalCard-actions-move"></div>
+            </div>
+          </article>
+          <article class="acard message is-success">
+            <div class="message-header">Gains</div>
+            <div class="message-body">
+              <div id="normalCard-actions-gets"></div>
+            </div>
+          </article>
+          <article id="acard-recruit" class="acard message is-success">
+            <div class="message-header">Recruit Bonus</div>
+            <div class="message-body">
+              <div id="normalCard-actions-enlist"></div>
+            </div>
+          </article>
+          <article class="ccard message is-warning">
+            <div class="message-header">Combat Card</div>
+            <div class="message-body">
+              <div id="combat-card-actions"></div>
+            </div>
+          </article>
+        </div>
+      </div>
+      <div class="spacer-20"></div>
+      <div class="container is-clearfix">
+        <div class="level">
+          <a id="playcard" class="button is-default is-pulled-left" disabled="disabled" onClick="normalCard();">Play Card</a>
+          <a id="playcombatcard" class="button is-default is-pulled-right" disabled="disabled" onClick="combatCard();">Play Combat Card</a>
+        </div>
+      </div>
+      <div class="container">
+        <div class="level">
+          <p>
+            <small><em><span id="deck-count">0</span>/<span id="card-count">0</span> cards left</em></small>
+          </p>
+        </div>
       </div>
     </div>
   </section>
