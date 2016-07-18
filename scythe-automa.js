@@ -57,9 +57,10 @@ var renderMoveAction = function(card, phase, index) {
   var pac = card.actions[phase].move[index];
   var fac = pac.faction;
   var type = pac.t;
+  var power = pac.p;
   fac = fac ? (fac + ' faction ') : '';
   if (type == 'attack')
-    type = 'attack (req. ' + pac.p + ' power)';
+    type = 'attack (req. ' + power + ' power)';
   if (type == 'factory')
     type = '<b>character</b> towards <b>fac/obj</b>';
   return fac + type;
@@ -131,14 +132,14 @@ var findProfile = function(profiles, type) {
   });
 };
 
-var setCardPhase = function(phase) {
+var renderCardPhase = function(phase) {
   var acards = document.getElementsByClassName('acard');
   for (var i = 0; i < acards.length; i++) {
     acards[i].className = 'acard message is-' + (phase == 1 ? 'danger' : 'success');
   }
 }
 
-var setStars = function(stars) {
+var renderStars = function(stars) {
   var sts = '';
   for (var i = 6; i > 0; i--) {
     sts += ' ' + (i > stars ? '&#9734;' : '&#9733;');
@@ -158,13 +159,38 @@ var startGame = function() {
   resetGame();
   document.getElementById('start').setAttribute('disabled', 'disabled');
   document.getElementById('difficulty').setAttribute('disabled', 'disabled');
+  document.getElementById('combatstar').setAttribute('disabled', 'disabled');
   document.getElementById('playcard').removeAttribute('disabled');
   document.getElementById('playcombatcard').removeAttribute('disabled');
+  document.getElementById('combatstar').removeAttribute('disabled');
+}
+
+var checkEndGame = function() {
+  return stars >= 6;
+}
+
+var endGame = function() {
+  document.getElementById('phase').innerHTML = 'Game Over';
+  document.getElementById('playcard').setAttribute('disabled', 'disabled');
+  document.getElementById('playcombatcard').setAttribute('disabled', 'disabled');
+  document.getElementById('combatstar').setAttribute('disabled', 'disabled');
+}
+
+var addCombatStar = function() {
+  if (combatstars == 0) return false;
+  combatstars--;
+  stars++;
+  renderStars(stars);
+  if (combatstars == 0) {
+    document.getElementById('combatstar').setAttribute('disabled', 'disabled');
+  }
+  if (checkEndGame()) endGame();
 }
 
 var resetGame = function() {
   tracker = -1;
   stars = 0;
+  combatstars = 2;
   phase = 0;
   deck = [];
   discards = {
@@ -180,34 +206,30 @@ var resetGame = function() {
   document.getElementById('river-state').innerHTML = 'cannot';
   document.getElementById('deck-count').innerHTML = cards.length;
   document.getElementById('card-count').innerHTML = cards.length;
-  setStars(stars);
-  setCardPhase(phase);
+  renderStars(stars);
+  renderCardPhase(phase);
   document.getElementById('start').removeAttribute('disabled');
   document.getElementById('difficulty').removeAttribute('disabled');
+  document.getElementById('playcard').setAttribute('disabled', 'disabled');
+  document.getElementById('playcombatcard').setAttribute('disabled', 'disabled');
+  document.getElementById('combatstar').setAttribute('disabled', 'disabled');
 }
 
 var normalCard = function() {
-  if (stars >= 6) {
-    return false;
-  }
+  if (checkEndGame()) return false;
   var card = takeCard();
   if (card.star) tracker++;
   var sa = profile.grid[tracker];
   phase = phase == 1 ? 1 : sa == 2 ? 1 : 0;
   if (sa == 2) stars++;
-  setStars(stars);
-  setCardPhase(phase);
+  renderStars(stars);
+  renderCardPhase(phase);
   document.getElementById('phase').innerHTML = (phase == 0) ? 'Phase I' : 'Phase II';
   document.getElementById('river-state').innerHTML = tracker > profile.rivers ? 'can' : 'cannot';
   renderNormal(card);
   renderCombat();
   discards.main.push(card);
-  if (stars >= 6) {
-    document.getElementById('phase').innerHTML = 'Game Over';
-    document.getElementById('playcard').setAttribute('disabled', 'disabled');
-    document.getElementById('playcombatcard').setAttribute('disabled', 'disabled');
-    return;
-  }
+  if (checkEndGame()) endGame();
 };
 
 var combatCard = function() {
