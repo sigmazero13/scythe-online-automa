@@ -59,7 +59,7 @@ var renderMoveAction = function(card, phase, index) {
   var type = pac.t;
   fac = fac ? (fac + ' faction ') : '';
   if (type == 'attack')
-    type = 'attack (req. ' + pac.power + ' power)';
+    type = 'attack (req. ' + pac.p + ' power)';
   if (type == 'factory')
     type = '<b>character</b> towards <b>fac/obj</b>';
   return fac + type;
