@@ -124,6 +124,8 @@ var renderCombat = function(card) {
   }
   '</tr></tbody></table>';
   document.getElementById('combat-card-actions').innerHTML = htmlCombat;
+  document.getElementById('deck-count').innerHTML = deck.length;
+  document.getElementById('card-count').innerHTML = cards.length;
 };
 
 var findProfile = function(profiles, type) {
