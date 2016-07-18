@@ -191,7 +191,7 @@ var normalCard = function() {
     return false;
   }
   var card = takeCard();
-  tracker++;
+  if (card.star) tracker++;
   var sa = profile.grid[tracker];
   phase = phase == 1 ? 1 : sa == 2 ? 1 : 0;
   if (sa == 2) stars++;
