@@ -1,5 +1,19 @@
 // TODO: Input power, faction, etc
 // TODO: automatic scoring (need battle resolution though)
+var ICON_DD = 30;
+var ICON_SD = 96;
+var FACTION_DD = 30;
+var FACTION_SD = 100;
+
+var iconindex = [
+  'move', 'factory', 'turn', 'phase2', 'isolated', 'phase1', 'star', 'attack', 'ignore',
+  'popularity', 'gold', 'power', 'encounter', 'powercard', 'resource', 'enlist', 'mech',
+  'worker', 'character', 'charormech', 'facobj'
+];
+
+var factionindex = [
+  'black', 'blue', 'red', 'yellow', 'white'
+];
 
 var fs = {
   dupe: function(obj) {
@@ -10,6 +24,19 @@ var fs = {
     var item = col[index];
     col.splice(index, 1);
     return item;
+  },
+  renderAnnotation: function(t) {
+    return '<span class="card-annotation">'+t+'</span>';
+  },
+  renderFactionOption: function(f, t) {
+    var html = fs.renderAnnotation('(');
+    html += '<canvas class="faction-canvas" data-faction-color="' + f + '" height="'+FACTION_DD+'" width="'+FACTION_DD+'"></canvas>';
+    html += t;
+    html += fs.renderAnnotation(')');
+    return html;
+  },
+  renderIcon: function(type) {
+    return '<canvas class="icon-canvas" data-icon-type="' + type + '" height="'+ICON_DD+'" width="'+ICON_DD+'"></canvas>';
   }
 };
 
@@ -41,29 +68,37 @@ var countActions = function(card, phase, action) {
 
 var renderEnlistAction = function(card, phase, index) {
   var enlist = card.actions[phase].enlist[index];
-  return enlist ? enlist : 'none';
+  return enlist ? fs.renderIcon(enlist) : '';
 };
 
 var renderGetsAction = function(card, phase, index) {
   var pac = card.actions[phase].gets[index];
-  var fac = pac.faction;
-  var type = pac.t;
-  var qty = pac.q;
-  fac = fac ? (fac + ' faction gain ') : 'gain ';
-  return fac + qty + ' ' + type;
+  var html = ""
+  for (var i = 0; i < pac.q; i++) {
+    html += fs.renderIcon(pac.t);
+  }
+  if (pac.faction)
+    html = fs.renderFactionOption(pac.faction, html);
+  return html;
 };
 
 var renderMoveAction = function(card, phase, index) {
   var pac = card.actions[phase].move[index];
   var fac = pac.faction;
-  var type = pac.t;
-  var power = pac.p;
-  fac = fac ? (fac + ' faction ') : '';
-  if (type == 'attack')
-    type = 'attack (req. ' + power + ' power)';
-  if (type == 'factory')
-    type = '<b>character</b> towards <b>fac/obj</b>';
-  return fac + type;
+  var html = "";
+  if (pac.t == 'attack') {
+    html += fs.renderIcon(pac.t);
+    if (pac.p) {
+      html += '<span class="card-annotation">' + pac.p + '</span>';
+    }
+    html += fs.renderIcon(pac.o);
+  } else {
+    html += fs.renderIcon('move') + fs.renderIcon(pac.t);
+  }
+  if (pac.faction) {
+    html = fs.renderFactionOption(pac.faction, html);
+  }
+  return html;
 };
 
 var renderActionSet = function(card, phase, counter, render,
@@ -88,9 +123,9 @@ var renderNormal = function(card) {
     htmlEnlist = htmlGets = htmlMove = 'Automa skips this round.';
   } else {
     htmlMove = renderActionSet(card, phase, countMoveActions,
-      renderMoveAction, '<br />', '; or');
+      renderMoveAction, '', '<span class="card-annotation or-slash">/</span>');
     htmlGets = renderActionSet(card, phase, countGetsActions,
-      renderGetsAction, '<br />');
+      renderGetsAction, '');
     htmlEnlist = renderActionSet(card, phase, countEnlistActions,
       renderEnlistAction, '', ',');
   }
@@ -100,6 +135,31 @@ var renderNormal = function(card) {
   document.getElementById('normalCard-actions-enlist').innerHTML = htmlEnlist;
   document.getElementById('deck-count').innerHTML = deck.length;
   document.getElementById('card-count').innerHTML = cards.length;
+
+  renderCanvas();
+
+};
+
+var renderCanvas = function() {
+
+  var doDraw = function(element, src, index, indextype, sd, dd) {
+    var context = element.getContext('2d');
+    var image = new Image();
+    image.src = src;
+    image.onload = function() {
+      var ii = index.indexOf(element.getAttribute(indextype));
+      context.drawImage(image, ii * sd, 0, sd, sd, 0, 0, dd, dd);
+    };
+  }
+
+  var icons = document.getElementsByClassName('icon-canvas')
+  for (var i = 0; i < icons.length; i++)
+    doDraw(icons[i], 'assets/icons.png', iconindex, 'data-icon-type', ICON_SD, ICON_DD);
+
+  var factions = document.getElementsByClassName('faction-canvas');
+  for (var i = 0; i < factions.length; i++) {
+    doDraw(factions[i], 'assets/factions-96x96.png', factionindex, 'data-faction-color', FACTION_SD, FACTION_DD);
+  }
 
 };
 
