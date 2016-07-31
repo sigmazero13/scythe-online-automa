@@ -38,10 +38,10 @@ section {
   background-color: transparent;
 }
 .message.is-success .message-header {
-  background-color: #5a7946;
+  background-color: #4A692E;
 }
 .message.is-danger .message-header {
-  background-color: #8c403a;
+  background-color: #8D3B1D;
 }
 .message-body {
   color: #444 !important;

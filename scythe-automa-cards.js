@@ -104,7 +104,7 @@ var cards = [{
       t: 'powercard',
       q: 1
     },{
-      t: 'character',
+      t: 'charormech',
       q: 1
     }],
     enlist: ['gold']
@@ -239,7 +239,7 @@ var cards = [{
       t: 'power',
       q: 2
     },{
-      t: 'character',
+      t: 'charormech',
       q: 1
     }],
     enlist: ['power']
@@ -281,10 +281,10 @@ var cards = [{
     }],
     gets: [{
       faction: 'red',
-      t: 'character',
+      t: 'charormech',
       q: 1
     },{
-      t: 'character',
+      t: 'charormech',
       q: 1
     },{
       t: 'powercard',
@@ -309,10 +309,10 @@ var cards = [{
     }],
     gets: [{
       faction: 'red',
-      t: 'character',
+      t: 'charormech',
       q: 1
     },{
-      t: 'character',
+      t: 'charormech',
       q: 1
     }],
     enlist: []
@@ -328,7 +328,7 @@ var cards = [{
       t: 'gold',
       q: 1
     },{
-      t: 'character',
+      t: 'charormech',
       q: 1
     }],
     enlist: ['gold']
@@ -355,7 +355,7 @@ var cards = [{
       t: 'worker',
       q: 1
     },{
-      t: 'character',
+      t: 'charormech',
       q: 1
     }],
     enlist: ['popularity']
@@ -391,7 +391,7 @@ var cards = [{
       t: 'worker'
     }],
     gets: [{
-      t: 'character',
+      t: 'charormech',
       q: 1
     },{
       t: 'power',
@@ -406,7 +406,7 @@ var cards = [{
       t: 'gold',
       q: 2
     },{
-      t: 'character',
+      t: 'charormech',
       q: 1
     }],
     enlist: []
@@ -493,7 +493,7 @@ var cards = [{
       t: 'gold',
       q: 1
     },{
-      t: 'character',
+      t: 'charormech',
       q: 1
     }],
     enlist: ['power']
@@ -645,7 +645,7 @@ var cards = [{
       t: 'character'
     }],
     gets: [{
-      t: 'character',
+      t: 'charormech',
       q: 1
     }],
     enlist: []
@@ -665,7 +665,7 @@ var cards = [{
       t: 'power',
       q: 1
     },{
-      t: 'character',
+      t: 'charormech',
       q: 1
     },{
       t: 'gold',

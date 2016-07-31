@@ -68,7 +68,7 @@ var countActions = function(card, phase, action) {
 
 var renderEnlistAction = function(card, phase, index) {
   var enlist = card.actions[phase].enlist[index];
-  return enlist ? fs.renderIcon(enlist) : '';
+  return enlist ? (fs.renderIcon('enlist') + fs.renderIcon(enlist)) : '';
 };
 
 var renderGetsAction = function(card, phase, index) {
@@ -93,7 +93,9 @@ var renderMoveAction = function(card, phase, index) {
     }
     html += fs.renderIcon(pac.o);
   } else {
-    html += fs.renderIcon('move') + fs.renderIcon(pac.t);
+    if (pac.t !== 'facobj')
+      html += fs.renderIcon('move')
+    html += fs.renderIcon(pac.t);
   }
   if (pac.faction) {
     html = fs.renderFactionOption(pac.faction, html);
@@ -102,7 +104,7 @@ var renderMoveAction = function(card, phase, index) {
 };
 
 var renderActionSet = function(card, phase, counter, render,
-  outerjoin, innerjoin) {
+    outerjoin, innerjoin) {
   var ht = '';
   var ij = innerjoin ? innerjoin : '';
   var ct = counter(card, phase) - (innerjoin ? 1 : 0);
