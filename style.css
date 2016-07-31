@@ -7,6 +7,9 @@ section {
 .spacer-20 {
   height: 20px;
 }
+.controls {
+  text-align: center;
+}
 #phase, #stars {
   font-size: 20px;
   color: #444;

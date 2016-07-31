@@ -24,6 +24,14 @@
         <a class="button is-danger is-pulled-right" onClick="resetGame();">Reset</a>
         <a id="start" class="button is-success is-pulled-right" onClick="startGame();">Start</a>
       </div>
+      <div class="spacer-20"></div>
+      <div class="container is-clearfix">
+        <div class="level controls">
+          <a id="playcard" class="button is-default" disabled="disabled" onClick="normalCard();">Play Card</a>
+          <a id="playcombatcard" class="button is-default" disabled="disabled" onClick="combatCard();">Combat Card</a>
+          <a id="combatstar" class="button is-default" disabled="disabled" onClick="addCombatStar();">+1 Combat Star</a>
+        </div>
+      </div>
       <div class="container is-clearfix">
         <p>
           <div class="level">
@@ -58,14 +66,6 @@
               <div id="combat-card-actions"></div>
             </div>
           </article>
-        </div>
-      </div>
-      <div class="spacer-20"></div>
-      <div class="container is-clearfix">
-        <div class="level">
-          <a id="playcard" class="button is-default is-pulled-left" disabled="disabled" onClick="normalCard();">Play Card</a>
-          <a id="playcombatcard" class="button is-default is-pulled-right" disabled="disabled" onClick="combatCard();">Play Combat Card</a>
-          <a id="combatstar" class="button is-default is-pulled-right" disabled="disabled" onClick="addCombatStar();">+1 Combat Star</a>
         </div>
       </div>
       <div class="container">
