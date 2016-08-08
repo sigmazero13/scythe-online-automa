@@ -131,19 +131,21 @@ var renderActionSet = function(card, phase, counter, render,
   return ht;
 }
 
-var renderNormal = function(card) {
+var renderNormal = function(card, phaseOverride) {
   var htmlMove = '';
   var htmlGets = '';
   var htmlEnlist = '';
 
+  var doPhase = typeof phaseOverride == 'undefined' ? phase : phaseOverride;
+
   if (card.skip && profile.type == 'easy') {
     htmlEnlist = htmlGets = htmlMove = 'Automa skips this round.';
   } else {
-    htmlMove = renderActionSet(card, phase, countMoveActions,
+    htmlMove = renderActionSet(card, doPhase, countMoveActions,
       renderMoveAction, '', '<span class="card-annotation or-slash">/</span>');
-    htmlGets = renderActionSet(card, phase, countGetsActions,
+    htmlGets = renderActionSet(card, doPhase, countGetsActions,
       renderGetsAction, '');
-    htmlEnlist = renderActionSet(card, phase, countEnlistActions,
+    htmlEnlist = renderActionSet(card, doPhase, countEnlistActions,
       renderEnlistAction, '', ',');
   }
 
@@ -374,8 +376,11 @@ var combatCard = function() {
 
 var checkLastCard = function() {
   var card = lastCard();
-  renderNormal(card);
+  var laphase = profile.grid[tracker - 2] - 1;
+  laphase = laphase < 1 ? 0 : 1
+  renderNormal(card, laphase);
   renderCombat(card);
+  renderCardPhase(laphase);
   document.getElementById('checklastcard').setAttribute('disabled', 'disabled');
 }
 
