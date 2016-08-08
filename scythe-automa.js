@@ -137,6 +137,7 @@ var renderNormal = function(card) {
   document.getElementById('normalCard-actions-enlist').innerHTML = htmlEnlist;
   document.getElementById('deck-count').innerHTML = deck.length;
   document.getElementById('card-count').innerHTML = cards.length;
+  document.getElementById('card-id').innerHTML = card.id + 1;
 
   renderCanvas();
 
@@ -188,6 +189,7 @@ var renderCombat = function(card) {
   document.getElementById('combat-card-actions').innerHTML = htmlCombat;
   document.getElementById('deck-count').innerHTML = deck.length;
   document.getElementById('card-count').innerHTML = cards.length;
+  document.getElementById('card-id').innerHTML = card.id + 1;
 };
 
 var findProfile = function(profiles, type) {
@@ -270,6 +272,7 @@ var resetGame = function() {
   document.getElementById('river-state').innerHTML = 'cannot';
   document.getElementById('deck-count').innerHTML = cards.length;
   document.getElementById('card-count').innerHTML = cards.length;
+  document.getElementById('card-id').innerHTML = 0;
   renderStars(stars);
   renderCardPhase(phase);
   document.getElementById('start').removeAttribute('disabled');
