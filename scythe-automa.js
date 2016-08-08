@@ -37,8 +37,9 @@ var fs = {
     html += fs.renderAnnotation(')');
     return html;
   },
-  renderIcon: function(type) {
-    return '<canvas class="icon-canvas" data-icon-type="' + type + '" height="'+ICON_DD+'" width="'+ICON_DD+'"></canvas>';
+  renderIcon: function(type, addClass) {
+    var cl = typeof addClass == 'undefined' ? '' : addClass;
+    return '<canvas class="icon-canvas ' + cl + '"  data-icon-type="' + type + '" height="'+ICON_DD+'" width="'+ICON_DD+'"></canvas>';
   }
 };
 
