@@ -48,7 +48,17 @@ var takeCard = function() {
   if (deck.length == 0) {
     deck = fs.dupe(cards);
   }
+  if (discards.main.length > 0 || discards.battle.length > 0) {
+    document.getElementById('checklastcard').removeAttribute('disabled');
+  }
   return fs.takerandom(deck);
+};
+
+var lastCard = function() {
+  if (discards.main.length < 2) {
+    return {};
+  }
+  return discards.main[discards.main.length - 2];
 };
 
 var countMoveActions = function(card, phase) {
@@ -292,6 +302,7 @@ var resetGame = function() {
   document.getElementById('difficulty').removeAttribute('disabled');
   document.getElementById('playcard').setAttribute('disabled', 'disabled');
   document.getElementById('playcombatcard').setAttribute('disabled', 'disabled');
+  document.getElementById('checklastcard').setAttribute('disabled', 'disabled');
   document.getElementById('combatstar').setAttribute('disabled', 'disabled');
 }
 
@@ -320,5 +331,12 @@ var combatCard = function() {
   renderCombat(card);
   discards.battle.push(card);
 };
+
+var checkLastCard = function() {
+  var card = lastCard();
+  renderNormal(card);
+  renderCombat(card);
+  document.getElementById('checklastcard').setAttribute('disabled', 'disabled');
+}
 
 resetGame();
