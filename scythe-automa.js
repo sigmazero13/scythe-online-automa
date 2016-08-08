@@ -42,11 +42,13 @@ var fs = {
   }
 };
 
-var deck, discards, phase, profile, stars, tracker;
+var shuffleDeck = function() {
+  deck = fs.dupe(cards);
+};
 
 var takeCard = function() {
   if (deck.length == 0) {
-    deck = fs.dupe(cards);
+    shuffleDeck();
   }
   if (discards.main.length > 0 || discards.battle.length > 0) {
     document.getElementById('checklastcard').removeAttribute('disabled');
@@ -312,6 +314,8 @@ var normalCard = function() {
   if (card.star) tracker++;
   // Phase II should start -after- the star has been assigned, not before.
   var saphase = profile.grid[tracker - 1];
+  var wasphase = phase;
+  var nephase = profile.grid[tracker];
   phase = phase == 1 ? 1 : saphase == 2 ? 1 : 0;
   var sastars = profile.grid[tracker];
   if (sastars == 2) stars++;
@@ -322,6 +326,9 @@ var normalCard = function() {
   renderNormal(card);
   renderCombat(card);
   discards.main.push(card);
+  if (wasphase == 0 && nephase == 2) { // Note: Indexed - 1 here
+    shuffleDeck();
+  }
   if (checkEndGame()) endGame();
 };
 
