@@ -283,9 +283,11 @@ var normalCard = function() {
   if (checkEndGame()) return false;
   var card = takeCard();
   if (card.star) tracker++;
-  var sa = profile.grid[tracker];
-  phase = phase == 1 ? 1 : sa == 2 ? 1 : 0;
-  if (sa == 2) stars++;
+  // Phase II should start -after- the star has been assigned, not before.
+  var saphase = profile.grid[tracker - 1];
+  phase = phase == 1 ? 1 : saphase == 2 ? 1 : 0;
+  var sastars = profile.grid[tracker];
+  if (sastars == 2) stars++;
   renderStars(stars);
   renderCardPhase(phase);
   document.getElementById('phase').innerHTML = (phase == 0) ? 'Phase I' : 'Phase II';
