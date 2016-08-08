@@ -154,9 +154,37 @@ var renderNormal = function(card) {
   document.getElementById('card-count').innerHTML = cards.length;
   document.getElementById('card-id').innerHTML = card.id + 1;
 
+  renderTracker();
   renderCanvas();
 
 };
+
+var renderTracker = function() {
+  var htmlTracker = '';
+  var water = false;
+  var phase2 = false;
+  for (var i = 0; i < profile.grid.length; i++) {
+    var active = i == tracker ? 'active' : '';
+    var cell = profile.grid[i];
+    if (i == 0) {
+      htmlTracker += fs.renderIcon('phase1', active);
+    } else if (cell == 0) {
+      htmlTracker += fs.renderIcon('isolated', active);
+    } else if (cell == 1) {
+      if (water == false)
+        water = true;
+      htmlTracker += fs.renderIcon('turn', active);
+    } else if (cell == 2) {
+      if (phase2 == false) {
+        phase2 = true;
+        htmlTracker += fs.renderIcon('phase2', active);
+      } else {
+        htmlTracker += fs.renderIcon('star', active);
+      }
+    }
+  }
+  document.getElementById('tracker').innerHTML = htmlTracker;
+}
 
 var renderCanvas = function() {
 
@@ -232,6 +260,8 @@ var selectDifficulty = function() {
   if (tracker > -1 || (stars > 0 && stars < 6))
   if (!confirm('If you change the difficulty, the game will reset.'))
     return false;
+  renderTracker();
+  renderCanvas();
   resetGame();
   return true;
 };
@@ -279,7 +309,7 @@ var addPowerStar = function() {
 }
 
 var resetGame = function() {
-  tracker = -1;
+  tracker = 0;
   stars = 0;
   combatstars = 2;
   powerstars = 1;
@@ -291,6 +321,8 @@ var resetGame = function() {
   };
   var difficulty = document.getElementById('difficulty').value;
   profile = findProfile(profiles, difficulty);
+  renderTracker();
+  renderCanvas();
   document.getElementById('normalCard-actions-move').innerHTML = '';
   document.getElementById('normalCard-actions-gets').innerHTML = '';
   document.getElementById('normalCard-actions-enlist').innerHTML = '';
@@ -323,7 +355,7 @@ var normalCard = function() {
   renderStars(stars);
   renderCardPhase(phase);
   document.getElementById('phase').innerHTML = (phase == 0) ? 'Phase I' : 'Phase II';
-  document.getElementById('river-state').innerHTML = tracker > profile.rivers ? 'can' : 'cannot';
+  document.getElementById('river-state').innerHTML = tracker >= profile.rivers ? 'can' : 'cannot';
   renderNormal(card);
   renderCombat(card);
   discards.main.push(card);
