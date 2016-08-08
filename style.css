@@ -5,11 +5,25 @@ html .container, section {
 section {
   padding: 20px !important;
 }
+.spacer-40 {
+  height: 40px;
+}
 .spacer-20 {
   height: 20px;
 }
 .spacer-10 {
   height: 10px;
+}
+#tracker {
+  margin: -25px;
+}
+#tracker canvas {
+  height: 15px;
+  width: 15px;
+}
+#tracker canvas.active {
+  height: 25px;
+  width: 25px;
 }
 .controls {
   text-align: center;
