@@ -5,6 +5,8 @@ var ICON_SD = 96;
 var FACTION_DD = 30;
 var FACTION_SD = 100;
 
+var tracker, stars, combatstars, powerstars, phase, deck, discards;
+
 var iconindex = [
   'move', 'factory', 'turn', 'phase2', 'isolated', 'phase1', 'star', 'attack', 'ignore',
   'popularity', 'gold', 'power', 'encounter', 'powercard', 'resource', 'enlist', 'mech',
@@ -225,10 +227,10 @@ var startGame = function() {
   resetGame();
   document.getElementById('start').setAttribute('disabled', 'disabled');
   document.getElementById('difficulty').setAttribute('disabled', 'disabled');
-  document.getElementById('combatstar').setAttribute('disabled', 'disabled');
   document.getElementById('playcard').removeAttribute('disabled');
   document.getElementById('playcombatcard').removeAttribute('disabled');
   document.getElementById('combatstar').removeAttribute('disabled');
+  document.getElementById('powerstar').removeAttribute('disabled');
 }
 
 var checkEndGame = function() {
@@ -240,6 +242,7 @@ var endGame = function() {
   document.getElementById('playcard').setAttribute('disabled', 'disabled');
   document.getElementById('playcombatcard').setAttribute('disabled', 'disabled');
   document.getElementById('combatstar').setAttribute('disabled', 'disabled');
+  document.getElementById('powerstar').setAttribute('disabled', 'disabled');
 }
 
 var addCombatStar = function() {
@@ -253,10 +256,20 @@ var addCombatStar = function() {
   if (checkEndGame()) endGame();
 }
 
+var addPowerStar = function() {
+  if (powerstars == 0) return false;
+  powerstars--;
+  stars++;
+  renderStars(stars);
+  document.getElementById('powerstar').setAttribute('disabled', 'disabled');
+  if (checkEndGame()) endGame();
+}
+
 var resetGame = function() {
   tracker = -1;
   stars = 0;
   combatstars = 2;
+  powerstars = 1;
   phase = 0;
   deck = [];
   discards = {
