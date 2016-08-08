@@ -293,13 +293,14 @@ var normalCard = function() {
   document.getElementById('phase').innerHTML = (phase == 0) ? 'Phase I' : 'Phase II';
   document.getElementById('river-state').innerHTML = tracker > profile.rivers ? 'can' : 'cannot';
   renderNormal(card);
-  renderCombat();
+  renderCombat(card);
   discards.main.push(card);
   if (checkEndGame()) endGame();
 };
 
 var combatCard = function() {
   var card = takeCard();
+  renderNormal(card);
   renderCombat(card);
   discards.battle.push(card);
 };
