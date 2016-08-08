@@ -138,7 +138,7 @@ var renderNormal = function(card, phaseOverride) {
 
   var doPhase = typeof phaseOverride == 'undefined' ? phase : phaseOverride;
 
-  if (card.skip && profile.type == 'easy') {
+  if (card.skip && profile.t == 'easy') {
     htmlEnlist = htmlGets = htmlMove = 'Automa skips this round.';
   } else {
     htmlMove = renderActionSet(card, doPhase, countMoveActions,
