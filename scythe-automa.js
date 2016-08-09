@@ -51,7 +51,7 @@ var takeCard = function() {
   if (deck.length == 0) {
     shuffleDeck();
   }
-  if (discards.main.length > 0 || discards.battle.length > 0) {
+  if (discards.main.length > 0) {
     document.getElementById('checklastcard').removeAttribute('disabled');
   }
   return fs.takerandom(deck);
