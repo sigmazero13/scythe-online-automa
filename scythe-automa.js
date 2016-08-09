@@ -349,6 +349,7 @@ var resetGame = function() {
 
 var normalCard = function() {
   if (checkEndGame()) return false;
+  document.getElementById('playcard').setAttribute('disabled', 'disabled');
   var card = takeCard();
   if (card.star) tracker++;
   // Phase II should start -after- the star has been assigned, not before.
