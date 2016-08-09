@@ -77,7 +77,7 @@ var countEnlistActions = function(card, phase) {
 }
 
 var countActions = function(card, phase, action) {
-  var list = card.actions[phase][action];
+  var list = card.actions ? card.actions[phase][action] : 0;
   return !list ? 0 : list.length;
 }
 
