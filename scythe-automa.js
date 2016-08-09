@@ -250,6 +250,10 @@ var renderCardPhase = function(phase) {
   }
 }
 
+var renderIsCombat = function(state) {
+  document.getElementById('ccard').setAttribute('data-is-combat', state);
+}
+
 var renderStars = function(stars) {
   var sts = '';
   for (var i = 6; i > 0; i--) {
@@ -364,6 +368,8 @@ var normalCard = function() {
   if (wasphase == 0 && nephase == 2) { // Note: Indexed - 1 here
     shuffleDeck();
   }
+  renderIsCombat(false);
+  document.getElementById('playcard').removeAttribute('disabled');
   if (checkEndGame()) endGame();
 };
 
@@ -371,6 +377,7 @@ var combatCard = function() {
   var card = takeCard();
   renderNormal(card);
   renderCombat(card);
+  renderIsCombat(true);
   discards.battle.push(card);
 };
 
@@ -380,6 +387,7 @@ var checkLastCard = function() {
   laphase = laphase < 1 ? 0 : 1
   renderNormal(card, laphase);
   renderCombat(card);
+  renderIsCombat(false);
   renderCardPhase(laphase);
   document.getElementById('checklastcard').setAttribute('disabled', 'disabled');
 }

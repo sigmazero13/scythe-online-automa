@@ -55,6 +55,9 @@ section {
 .ccard table {
   background-color: transparent;
 }
+#ccard[data-is-combat='true'] {
+  border: 2px solid red;
+}
 .message.is-success .message-header {
   background-color: #4A692E;
 }
