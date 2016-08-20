@@ -61,7 +61,7 @@ var lastCard = function() {
   if (discards.main.length < 2) {
     return {};
   }
-  return discards.main[discards.main.length - 2];
+  return discards.main[discards.main.length - 1];
 };
 
 var countMoveActions = function(card, phase) {
