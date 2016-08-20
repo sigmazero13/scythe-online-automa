@@ -158,6 +158,9 @@ var cards = [{
       t: 'gold',
       q: 1
     },{
+      t: 'powercard',
+	    q: 1,
+    },{
       t: 'powercard'
     }],
     enlist: ['powercard']
