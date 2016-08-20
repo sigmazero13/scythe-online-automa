@@ -264,8 +264,6 @@ var renderStars = function(stars) {
 
 var selectDifficulty = function() {
   if (tracker > -1 || (stars > 0 && stars < 6))
-  if (!confirm('If you change the difficulty, the game will reset.'))
-    return false;
   renderTracker();
   renderCanvas();
   resetGame();
@@ -351,18 +349,20 @@ var normalCard = function() {
   if (checkEndGame()) return false;
   document.getElementById('playcard').setAttribute('disabled', 'disabled');
   var card = takeCard();
-  if (card.star) tracker++;
-  // Phase II should start -after- the star has been assigned, not before.
-  var saphase = profile.grid[tracker - 1];
-  var wasphase = phase;
-  var nephase = profile.grid[tracker];
-  phase = phase == 1 ? 1 : saphase == 2 ? 1 : 0;
-  var sastars = profile.grid[tracker];
-  if (sastars == 2) stars++;
+  if (!card.skip) {
+    if (card.star) tracker++;
+    // Phase II should start -after- the star has been assigned, not before.
+    var saphase = profile.grid[tracker - 1];
+    var wasphase = phase;
+    var nephase = profile.grid[tracker];
+    phase = phase == 1 ? 1 : saphase == 2 ? 1 : 0;
+    var sastars = profile.grid[tracker];
+    if (sastars == 2) stars++;
+  }
   renderStars(stars);
   renderCardPhase(phase);
   document.getElementById('phase').innerHTML = (phase == 0) ? 'Phase I' : 'Phase II';
-  document.getElementById('river-state').innerHTML = tracker >= profile.rivers ? 'can' : 'cannot';
+  document.getElementById('river-state').innerHTML = tracker - 1 >= profile.rivers ? 'can' : 'cannot';
   renderNormal(card);
   renderCombat(card);
   discards.main.push(card);
