@@ -61,7 +61,7 @@ var lastCard = function() {
   if (discards.main.length < 2) {
     return {};
   }
-  return discards.main[discards.main.length - 1];
+  return discards.main[discards.main.length - 2]; // 1 for zero index, 1 for last
 };
 
 var countMoveActions = function(card, phase) {
@@ -384,12 +384,17 @@ var combatCard = function() {
 
 var checkLastCard = function() {
   var card = lastCard();
-  var laphase = profile.grid[tracker - 2] - 1;
-  laphase = laphase < 1 ? 0 : 1
-  renderNormal(card, laphase);
+  var phase = 0;
+  for (var i = 0; i < profile.grid.length; i++) {
+    if (profile.grid[i] < 2) continue;
+    if (i > tracker - 2) break;
+    phase = 1;
+    break;
+  }
+  renderNormal(card, phase);
   renderCombat(card);
   renderIsCombat(false);
-  renderCardPhase(laphase);
+  renderCardPhase(phase);
   document.getElementById('checklastcard').setAttribute('disabled', 'disabled');
 }
 
