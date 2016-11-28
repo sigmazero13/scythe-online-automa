@@ -14,7 +14,7 @@ var iconindex = [
 ];
 
 var factionindex = [
-  'black', 'blue', 'red', 'yellow', 'white'
+  'black', 'blue', 'red', 'yellow', 'white', 'purple', 'green'
 ];
 
 var fs = {
