@@ -5,17 +5,16 @@ var ICON_SD = 96;
 var FACTION_DD = 30;
 var FACTION_SD = 100;
 
-var tracker, stars, combatstars, powerstars, phase, deck, discards;
+var tracker, stars, combatstars, powerstars, phase, deck, discards, faction;
 
 var iconindex = [
-  'move', 'factory', 'turn', 'phase2', 'isolated', 'phase1', 'star', 'attack', 'ignore',
-  'popularity', 'gold', 'power', 'encounter', 'powercard', 'resource', 'enlist', 'mech',
-  'worker', 'character', 'charormech', 'facobj'
+  'move',     'factory',   'turn',    'phase2',    'isolated','phase1',
+  'star',     'attack',    'ignore',  'popularity','gold',    'power',
+  'encounter','powercard', 'resource','enlist',    'mech',    'worker',
+  'character','charormech','facobj'
 ];
 
-var factionindex = [
-  'black', 'blue', 'red', 'yellow', 'white', 'purple', 'green'
-];
+var factionindex = [ 'black','blue','red','yellow','white','purple','green' ];
 
 var fs = {
   dupe: function(obj) {
@@ -32,14 +31,17 @@ var fs = {
   },
   renderFactionOption: function(f, t) {
     var html = fs.renderAnnotation('(');
-    html += '<canvas class="faction-canvas" data-faction-color="' + f + '" height="'+FACTION_DD+'" width="'+FACTION_DD+'"></canvas>';
+    html += '<canvas class="faction-canvas" data-faction-color="' + f 
+    html += '" height="'+FACTION_DD+'" width="'+FACTION_DD+'"></canvas>';
     html += t;
     html += fs.renderAnnotation(')');
     return html;
   },
   renderIcon: function(type, addClass) {
     var cl = typeof addClass == 'undefined' ? '' : addClass;
-    return '<canvas class="icon-canvas ' + cl + '"  data-icon-type="' + type + '" height="'+ICON_DD+'" width="'+ICON_DD+'"></canvas>';
+    return '<canvas class="icon-canvas ' 
+      + cl + '"  data-icon-type="' + type + '" height="' + ICON_DD + '" width="'
+      + ICON_DD + '"></canvas>';
   }
 };
 
@@ -322,7 +324,10 @@ var resetGame = function() {
   discards = {
     main: [],
     battle: []
-  };
+  };  
+  faction = document.getElementById('faction-select').value;
+  document.getElementById('insignia').setAttribute('data-faction-color',faction);
+
   var difficulty = document.getElementById('difficulty').value;
   profile = findProfile(profiles, difficulty);
   renderTracker();

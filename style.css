@@ -4,16 +4,12 @@ html .container, section {
 }
 section {
   padding: 20px !important;
+  height: 100%;
 }
-.spacer-40 {
-  height: 40px;
-}
-.spacer-20 {
-  height: 20px;
-}
-.spacer-10 {
-  height: 10px;
-}
+.spacer-40 { height: 40px; }
+.spacer-20 { height: 20px; }
+.spacer-10 { height: 10px; }
+
 #tracker {
   margin: -25px;
 }
@@ -32,51 +28,54 @@ section {
   font-size: 20px;
   color: #444;
 }
-.acard {
-  height: 90px;
+#faction-insignia {
+  text-align: center;
+  margin: 5px 0 -25px;
 }
-.ccard {
-  height: 95px;
-}
-.acard.message {
-  margin-bottom: 0 !important;
-}
-.acard .message-header {
-  height: 30px;
-}
+
+.acard { height: 90px; }
+.acard.message { margin-bottom: 0 !important; }
+.acard .message-header { height: 30px; }
 .acard .message-body {
   height: 60px;
   text-align: center;
 }
+
+.ccard { height: 95px; }
+.ccard table { background-color: transparent; }
+#ccard[data-is-combat='true'] { border: 2px solid red; }
 .ccard .message-body {
   height: 60px;
   padding: 0;
 }
-.ccard table {
-  background-color: transparent;
-}
-#ccard[data-is-combat='true'] {
-  border: 2px solid red;
-}
-.message.is-success .message-header {
-  background-color: #4A692E;
-}
-.message.is-danger .message-header {
-  background-color: #8D3B1D;
-}
+.message.is-success .message-header { background-color: #4A692E; }
+.message.is-danger  .message-header { background-color: #8D3B1D; }
 .message-body {
   color: #444 !important;
   line-height: 32px;
 }
-.container {
-  max-width: 505px !important;
-}
+.container { max-width: 505px !important; }
 
 .card-annotation {
   font-size: 32px;
   vertical-align: top;
   font-weight: bold;
 }
-.or-slash {
-  margin-right: 2px;
+.or-slash { margin-right: 2px; }
+
+@media screen and (max-width: 550px) {
+  .select, .select select { width: 100% }
+  .select { margin-bottom: 5px }
+  .button.is-default { 
+    width: 100%; 
+    margin: 0 0 5px 0; }
+  .button.is-pulled-right, 
+  #star-panel .button { 
+    width: 49% 
+  }
+  .container .button:first-of-type {
+    float: left;
+    margin-left: 0;
+  }
+
 }

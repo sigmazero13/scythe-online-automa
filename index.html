@@ -10,7 +10,7 @@
     <div class="columns">
       <div class="column is-half is-offset-one-quarter">
       <div class="container is-clearfix">
-        <p class="control">
+        <p class="control" id="initial-config">
           <span class="select is-pulled-left">
             <select value="_" id="difficulty" onChange="selectDifficulty();">
               <option disabled="disabled">Select difficulty...</option>
@@ -20,9 +20,21 @@
               <option value="very hard">Ultimaszyna (very hard)</option>
             </select>
           </span>
+          <span class="select is-pulled-left">
+            <select value="_" id="faction-select" onChange="selectDifficulty();">
+              <option disabled="disabled">Select faction...</option>
+              <option value="green">Albion</option>
+              <option value="yellow">Crimea</option>
+              <option value="blue">Nordic</option>
+              <option value="white">Polania</option>
+              <option value="red">Rusviet</option>
+              <option value="black">Saxony</option>
+              <option value="purple">Togawa</option>
+            </select>
+          </span>
         </p>
-        <a class="button is-danger is-pulled-right" onClick="resetGame();">Reset</a>
         <a id="start" class="button is-success is-pulled-right" onClick="startGame();">Start</a>
+        <a class="button is-danger is-pulled-right" onClick="resetGame();">Reset</a>
       </div>
       <div class="spacer-10"></div>
       <div class="container is-clearfix">
@@ -34,18 +46,20 @@
         <div class="spacer-40"></div>
         <div id="tracker" class="controls"></div>
         <div class="spacer-40"></div>
-        <div class="controls">
+        <div id="star-panel" class="controls">
           <a id="combatstar" class="button is-default" disabled="disabled" onClick="addCombatStar();">+1 Combat Star</a>
           <a id="powerstar" class="button is-default" disabled="disabled" onClick="addPowerStar();">+1 Power Star</a>
         </div>
       </div>
       <div class="container is-clearfix">
-        <p>
-          <div class="level">
-            <div class="is-pulled-left"><span id="phase"></span></div>
-            <div class="is-pulled-right"><span id="stars">&#9734; &#9734; &#9734; &#9734; &#9734; &#9734;</span></div>
-          </div>
-        </p>
+        <div id="faction-insignia">
+          <canvas id='insignia' class="faction-canvas" data-faction-color="red" height="30" width="30">
+          </canvas>
+        </div>
+        <div class="level">
+          <div class="is-pulled-left"><span id="phase"></span></div>
+          <div class="is-pulled-right"><span id="stars">&#9734; &#9734; &#9734; &#9734; &#9734; &#9734;</span></div>
+        </div>
       </div>
       <div class="container">
         <div id="normalCard">

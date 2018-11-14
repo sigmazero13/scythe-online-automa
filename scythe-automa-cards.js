@@ -1,22 +1,25 @@
-var profiles = [{ t: 'easy',   name: 'Autometta',
+var profiles = [
+{ t: 'easy', 
+  name: 'Autometta',
   rivers: 5,
   phase: 11,
-  grid: [0,0,0,0,0,1,1,1,1,1,2,1,1,1,1,2,1,1,2,1,2,1,2,2]
-},{ t: 'normal',   name: 'Automa',
+  grid: [0,0,0,0,0,1,1,1,1,1,2,1,1,1,1,2,1,1,2,1,2,1,2,2]},
+{ t: 'normal', 
+  name: 'Automa',
   rivers: 4,
   phase: 10,
-  grid: [0,0,0,0,1,1,1,1,1,2,1,1,1,1,2,1,1,2,1,2,2,2]
-},{ t: 'hard',   name: 'Automaszyna',
+  grid: [0,0,0,0,1,1,1,1,1,2,1,1,1,1,2,1,1,2,1,2,2,2]},
+{ t: 'hard', 
+  name: 'Automaszyna',
   rivers: 3,
   phase: 10,
-  grid: [0,0,0,1,1,1,1,1,1,2,1,1,2,1,2,1,2,2,2]
-},{
-  t: 'very hard',
+  grid: [0,0,0,1,1,1,1,1,1,2,1,1,2,1,2,1,2,2,2]},
+{ t: 'very hard',
   name: 'Ultimaszyna',
   rivers: 0,
   phase: 9,
-  grid: [1,1,1,1,1,1,1,1,2,1,1,2,1,2,1,2,2,2]
-}];
+  grid: [1,1,1,1,1,1,1,1,2,1,1,2,1,2,1,2,2,2]}
+];
 
 var cards = [
 {

@@ -737,9 +737,6 @@ a.box:active {
   border: 1px solid #d3d6db;
   border-radius: 3px;
   color: #222324;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
   display: inline-flex;
   font-size: 14px;
   height: 32px;
@@ -748,8 +745,6 @@ a.box:active {
       -ms-flex-pack: start;
           justify-content: flex-start;
   line-height: 24px;
-  padding-left: 8px;
-  padding-right: 8px;
   position: relative;
   vertical-align: top;
   -webkit-box-pack: center;
@@ -760,6 +755,7 @@ a.box:active {
   padding-right: 10px;
   text-align: center;
   white-space: nowrap;
+  margin-left: 3px;
 }
 
 .button:hover {
@@ -771,26 +767,31 @@ a.box:active {
   outline: none;
 }
 
-.button[disabled], .button.is-disabled {
+.button[disabled], 
+.button.is-disabled {
   background-color: #f5f7fa;
   border-color: #d3d6db;
   cursor: not-allowed;
   pointer-events: none;
 }
 
-.button[disabled]::-moz-placeholder, .button.is-disabled::-moz-placeholder {
+.button[disabled]::-moz-placeholder, 
+.button.is-disabled::-moz-placeholder {
   color: rgba(34, 35, 36, 0.3);
 }
 
-.button[disabled]::-webkit-input-placeholder, .button.is-disabled::-webkit-input-placeholder {
+.button[disabled]::-webkit-input-placeholder, 
+.button.is-disabled::-webkit-input-placeholder {
   color: rgba(34, 35, 36, 0.3);
 }
 
-.button[disabled]:-moz-placeholder, .button.is-disabled:-moz-placeholder {
+.button[disabled]:-moz-placeholder, 
+.button.is-disabled:-moz-placeholder {
   color: rgba(34, 35, 36, 0.3);
 }
 
-.button[disabled]:-ms-input-placeholder, .button.is-disabled:-ms-input-placeholder {
+.button[disabled]:-ms-input-placeholder, 
+.button.is-disabled:-ms-input-placeholder {
   color: rgba(34, 35, 36, 0.3);
 }
 
@@ -1573,13 +1574,13 @@ a.box:active {
           justify-content: flex-start;
   line-height: 24px;
   padding-left: 8px;
-  padding-right: 8px;
   position: relative;
   vertical-align: top;
   cursor: pointer;
   display: block;
   outline: none;
-  padding-right: 36px;
+  padding-right: 25px;
+  margin-right: 5px;
 }
 
 .select select:hover {
