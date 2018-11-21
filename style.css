@@ -32,7 +32,7 @@ section {
   text-align: center;
   margin: 5px 0 -25px;
 }
-
+.cardmeta { font-style: italic; }
 .acard { height: 90px; }
 .acard.message { margin-bottom: 0 !important; }
 .acard .message-header { height: 30px; }
@@ -47,6 +47,15 @@ section {
 .ccard .message-body {
   height: 60px;
   padding: 0;
+}
+.ccard .icon-canvas.combat-card {
+  width: 18px;
+  height: 18px;
+}
+#combat-card-actions table td, 
+#combat-card-actions table th{
+  width: 20%;
+  text-align: center;
 }
 .message.is-success .message-header { background-color: #4A692E; }
 .message.is-danger  .message-header { background-color: #8D3B1D; }

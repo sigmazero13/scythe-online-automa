@@ -4,6 +4,16 @@
   <title>Scythe Automa - Online Simulator</title>
   <link rel="stylesheet" type="text/css" href="bulma.css">
   <link rel="stylesheet" type="text/css" href="style.css">
+  <style>
+  .centered-cardmeta {
+    float: none;
+    width: 100%;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    cursor: pointer;
+  }
+  </style>
 </head>
 <body>
   <section class="section">
@@ -34,7 +44,7 @@
           </span>
         </p>
         <a id="start" class="button is-success is-pulled-right" onClick="startGame();">Start</a>
-        <a class="button is-danger is-pulled-right" onClick="resetGame();">Reset</a>
+        <a class="button is-danger is-pulled-right" id='reset' onClick="resetGame();">Reset</a>
       </div>
       <div class="spacer-10"></div>
       <div class="container is-clearfix">
@@ -42,6 +52,7 @@
           <a id="playcard" class="button is-default" disabled="disabled" onClick="normalCard();">Play Card</a>
           <a id="playcombatcard" class="button is-default" disabled="disabled" onClick="combatCard();">Combat Card</a>
           <a id="checklastcard" class="button is-default" disabled="disabled" onClick="checkLastCard();">Previous Card</a>
+          <a id="showpresentcard" class="button is-default" style="display: none;">Current Card</a>
         </div>
         <div class="spacer-40"></div>
         <div id="tracker" class="controls"></div>
@@ -53,12 +64,25 @@
       </div>
       <div class="container is-clearfix">
         <div id="faction-insignia">
-          <canvas id='insignia' class="faction-canvas" data-faction-color="red" height="30" width="30">
+          <canvas id='insignia' class="faction-canvas" data-faction-color="red" height="48" width="48">
           </canvas>
         </div>
         <div class="level">
           <div class="is-pulled-left"><span id="phase"></span></div>
           <div class="is-pulled-right"><span id="stars">&#9734; &#9734; &#9734; &#9734; &#9734; &#9734;</span></div>
+        </div>
+      </div>
+      <div class="container is-clearfix cardmeta">
+        <div class="level">
+          <p>
+            <small class="is-pulled-left"><em><span id="deck-count">0</span>/<span id="card-count">0</span> cards left</em></small>
+            <small class='centered-cardmeta'>
+              <em><span id="turn-info"></span></em>
+            </small>
+          </p>
+          <p>
+            <small id='current-card-number' class="is-pulled-right"><em>Card #<span id="card-id">0</span></em></small>
+          </p>
         </div>
       </div>
       <div class="container">
@@ -89,19 +113,12 @@
           </article>
         </div>
       </div>
-      <div class="container">
-        <div class="level">
-          <p>
-            <small class="is-pulled-left"><em><span id="deck-count">0</span>/<span id="card-count">0</span> cards left</em></small>
-          </p>
-          <p>
-            <small class="is-pulled-right"><em>Card #<span id="card-id">0</span></em></small>
-          </p>
-        </div>
-      </div>
     </div>
   </section>
+  <script src="./jquery-3.3.1.slim.min.js"></script>
   <script src="./scythe-automa-cards.js"></script>
-  <script src="./scythe-automa.js"></script>
+  <script src="./scythe-automa.js"></script>  
+  <script src="./setup.js"></script>
+  <!-- <script src="./fenris.js"></script> -->
 </body>
 </html>

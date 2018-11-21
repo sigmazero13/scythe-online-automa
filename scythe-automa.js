@@ -229,7 +229,7 @@ var renderCanvas = function() {
 
 var renderCombat = function(card) {
   var htmlCombat = '<table class="table is-narrow"><thead><tr>';
-  var arr = ['0-7', '8-13', '14+', 'P', 'R'];
+  var arr = ['0-7', '8-13', '14+', '', ''];
   for (var i = 0; i < arr.length; i++) {
     htmlCombat += '<th>' + arr[i] + '</th>'
   }
@@ -239,8 +239,15 @@ var renderCombat = function(card) {
     for (var i = 0; i < 3; i++) {
       htmlCombat += '<td>' + cc.spend[i] + '</td>'
     }
-    htmlCombat += '<td>' + cc.cards + '</td>';
-    htmlCombat += '<td>' + cc.resources + '</td>';
+
+    htmlCombat += '<td>';
+    for(var i = 0; i < cc.cards; i++) { 
+      htmlCombat += fs.renderIcon('powercard','combat-card') }
+    htmlCombat += '</td><td>';
+
+    for(var i = 0; i < cc.resources; i++) { 
+      htmlCombat += fs.renderIcon('resource','combat-card') }
+    htmlCombat += '</td>';
   } else {
     for (var i = 0; i < 5; i++) {
       htmlCombat += '<td></td>';
@@ -251,6 +258,8 @@ var renderCombat = function(card) {
   document.getElementById('deck-count').innerHTML = deck.length;
   document.getElementById('card-count').innerHTML = cards.length;
   document.getElementById('card-id').innerHTML = card.id + 1;
+
+  renderCanvas();
 };
 
 var findProfile = function(profiles, type) {
@@ -395,14 +404,13 @@ var normalCard = function() {
 
 var combatCard = function() {
   var card = takeCard();
-  renderNormal(card);
   renderCombat(card);
   renderIsCombat(true);
   discards.battle.push(card);
 };
 
 var checkLastCard = function() {
-  var card = lastCard();
+  var card  = lastCard();
   var phase = 0;
   for (var i = 0; i < profile.grid.length; i++) {
     if (profile.grid[i] < 2) continue;
