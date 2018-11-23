@@ -1,30 +1,28 @@
-var profiles = [{
-  t: 'easy',
+var profiles = [
+{ t: 'easy', 
   name: 'Autometta',
   rivers: 5,
   phase: 11,
-  grid: [0,0,0,0,0,1,1,1,1,1,2,1,1,1,1,2,1,1,2,1,2,1,2,2]
-},{
-  t: 'normal',
+  grid: [0,0,0,0,0,1,1,1,1,1,2,1,1,1,1,2,1,1,2,1,2,1,2,2]},
+{ t: 'normal', 
   name: 'Automa',
   rivers: 4,
   phase: 10,
-  grid: [0,0,0,0,1,1,1,1,1,2,1,1,1,1,2,1,1,2,1,2,2,2]
-},{
-  t: 'hard',
+  grid: [0,0,0,0,1,1,1,1,1,2,1,1,1,1,2,1,1,2,1,2,2,2]},
+{ t: 'hard', 
   name: 'Automaszyna',
   rivers: 3,
   phase: 10,
-  grid: [0,0,0,1,1,1,1,1,1,2,1,1,2,1,2,1,2,2,2]
-},{
-  t: 'very hard',
+  grid: [0,0,0,1,1,1,1,1,1,2,1,1,2,1,2,1,2,2,2]},
+{ t: 'very hard',
   name: 'Ultimaszyna',
   rivers: 0,
   phase: 9,
-  grid: [1,1,1,1,1,1,1,1,2,1,1,2,1,2,1,2,2,2]
-}];
+  grid: [1,1,1,1,1,1,1,1,2,1,1,2,1,2,1,2,2,2]}
+];
 
-var cards = [{
+var cards = [
+{
   id: 0,
   skip: false,
   star: true,
@@ -35,33 +33,18 @@ var cards = [{
   },
   actions: [{
     move: [
-      {
-        t: 'worker',
-        faction: 'blue'
-      },
-      {
-        t: 'facobj'
-      },
-      {
-        t: 'character'
-      }
+      { t: 'worker', faction: 'blue' },
+      { t: 'facobj' },
+      { t: 'character' }
     ],
-    gets: [{
-      t: 'power',
-      q: 1
-    },{
-      t: 'worker',
-      q: 1
-    }],
+    gets: [
+      { t: 'power',  q: 1},
+      { t: 'worker', q: 1} ],
     enlist: ['power']
   },{
-    move: [{
-      t: 'worker'
-    }],
-    gets: [{
-      t: 'power',
-      q: 4
-    }],
+    move: [{ t: 'worker' }],
+    gets: [{ t: 'power', q: 4 }
+      ],
     enlist: ['power']
   }]
 },{
@@ -74,41 +57,23 @@ var cards = [{
     resources: 2
   },
   actions: [{
-    move: [{
-      faction: 'white',
-      t: 'facobj'
-    },{
-      t: 'worker'
-    }],
-    gets: [{
-      faction: 'yellow',
-      t: 'gold',
-      q: 1
-    },{
-      t: 'gold',
-      q: 1
-    }],
+    move: [
+      { faction: 'white', t: 'facobj' },
+      { t: 'worker' } ],
+    gets: [
+      { faction: 'yellow', t: 'gold', q: 1 },       
+      { t: 'gold', q: 1} ],
     enlist: []
   },{
-    move: [{
-      faction: 'white',
-      t: 'facobj'
-    },{
-      t: 'worker'
-    }],
-    gets: [{
-      faction: 'yellow',
-      t: 'gold',
-      q: 1
-    },{
-      t: 'powercard',
-      q: 1
-    },{
-      t: 'charormech',
-      q: 1
-    }],
+    move: [
+      { faction: 'white', t: 'facobj' },
+      { t: 'worker' } ],
+    gets: [
+      { faction: 'yellow', t: 'gold', q: 1 },   
+      { t: 'powercard',  q: 1 },   
+      { t: 'charormech', q: 1 } ],
     enlist: ['gold']
-  }]
+  }] 
 },{
   id: 2,
   skip: false,
@@ -118,27 +83,16 @@ var cards = [{
     cards: 0,
     resources: 0
   },
-  actions: [{
-    move: [{
-      t: 'worker'
-    }],
-    gets: [{
-      t: 'power',
-      q: 3
-    }],
-    enlist: []
-  },{
-    move: [{
-      t: 'worker'
-    }],
-    gets: [{
-      t: 'power',
-      q: 2
-    },{
-      t: 'worker',
-      q: 1
-    }],
-    enlist: ['popularity']
+  actions: [{ 
+    move: [ { t: 'worker' } ],
+    gets: [ { t: 'power', q: 3 } ],
+    enlist: [] 
+  },{ 
+    move: [ { t: 'worker' } ],
+    gets: [ 
+      { t: 'power',  q: 2 },
+      { t: 'worker', q: 1 } ],
+    enlist: ['popularity'] 
   }]
 },{
   id: 3,
@@ -149,35 +103,20 @@ var cards = [{
     cards: 1,
     resources: 0
   },
-  actions: [{
-    move: [{
-      t: 'worker'
-    }],
-    gets: [{
-      faction: 'yellow',
-      t: 'gold',
-      q: 1
-    },{
-      t: 'powercard',
-	    q: 1,
-    },{
-      t: 'powercard'
-    }],
-    enlist: ['powercard']
-  },{
-    move: [{
-      t: 'worker'
-    }],
-    gets: [{
-      faction: 'yellow',
-      t: 'gold',
-      q: 1
-    },{
-      t: 'gold',
-      q: 2
-    }],
-    enlist: ['power']
-  }]
+  actions: [{ 
+    move: [{ t: 'worker' }],
+    gets: [
+      { faction: 'yellow', t: 'gold', q: 1 },   
+      { t: 'powercard', q: 1, },
+      { t: 'powercard' } ],
+    enlist: ['powercard'] 
+  },{ 
+    move: [{ t: 'worker' } ],
+    gets: [
+      { faction: 'yellow', t: 'gold', q: 1 },   
+      { t: 'gold', q: 2 } ],
+    enlist: ['power'] }
+  ]
 },{
   id: 4,
   skip: false,
@@ -188,35 +127,19 @@ var cards = [{
     resources: 4
   },
   actions: [{
-    move: [{
-      faction: 'green',
-      t: 'facobj'
-    },{
-      t: 'worker'
-    }],
-    gets: [{
-      faction: 'purple',
-      t: 'charormech',
-      q: 1
-    },{
-      t: 'worker',
-      q: 1
-    },{
-      t: 'gold',
-      q: 1
-    }],
+    move: [
+      { faction: 'green', t: 'facobj' },
+      { t: 'worker' }],
+    gets: [
+      { faction: 'purple', t: 'charormech', q: 1 },
+      { t: 'worker', q: 1 },
+      { t: 'gold', q: 1 } ],
     enlist: ['gold']
   },{
-    move: [{
-      t: 'mech'
-    }],
-    gets: [{
-      t: 'power',
-      q: 4
-    },{
-      t: 'worker',
-      q: 1
-    }],
+    move: [{ t: 'mech' }],
+    gets: [
+      { t: 'power', q: 4 },
+      { t: 'worker', q: 1 } ],
     enlist: ['powercard']
   }]
 },{
@@ -229,29 +152,15 @@ var cards = [{
     resources: 0
   },
   actions: [{
-    move: [{
-      t: 'worker'
-    }],
-    gets: [{
-      t: 'power',
-      q: 2
-    }],
+    move: [{ t: 'worker' }],
+    gets: [{ t: 'power', q: 2 }],
     enlist: []
   },{
-    move: [{
-      t: 'mech'
-    }],
-    gets: [{
-      faction: 'yellow',
-      t: 'gold',
-      q: 1
-    },{
-      t: 'power',
-      q: 2
-    },{
-      t: 'charormech',
-      q: 1
-    }],
+    move: [{ t: 'mech' }],
+    gets: [
+      { faction: 'yellow', t: 'gold', q: 1 },
+      { t: 'power', q: 2 },
+      { t: 'charormech', q: 1 } ],
     enlist: ['power']
   }]
 },{
@@ -264,42 +173,21 @@ var cards = [{
     resources: 2
   },
   actions: [{
-    move: [{
-      faction: 'black',
-      t: 'attack',
-      o: 'charormech',
-      p: 5
-    },{
-      t: 'worker'
-    }],
-    gets: [{
-      t: 'worker',
-      q: 1
-    },{
-      t: 'gold',
-      q: 1
-    }],
+    move: [
+      { faction: 'black', t: 'attack',o: 'charormech', p: 5 },
+      { t: 'worker' }],
+    gets: [
+      { t: 'worker', q: 1 },
+      { t: 'gold', q: 1 } ],
     enlist: ['popularity']
   },{
-    move: [{
-      faction: 'black',
-      t: 'attack',
-      o: 'charormech',
-      p: 5
-    },{
-      t: 'mech'
-    }],
-    gets: [{
-      faction: 'red',
-      t: 'charormech',
-      q: 1
-    },{
-      t: 'charormech',
-      q: 1
-    },{
-      t: 'powercard',
-      q: 1
-    }],
+    move: [
+      { faction: 'black', t: 'attack', o: 'charormech', p: 5 },
+      { t: 'mech' }],
+    gets: [
+      { faction: 'red', t: 'charormech', q: 1 },
+      { t: 'charormech', q: 1 },
+      { t: 'powercard', q: 1 } ],
     enlist: ['gold']
   }]
 },{
@@ -312,41 +200,22 @@ var cards = [{
     resources: 1
   },
   actions: [{
-    move: [{
-      faction: 'purple',
-      t: 'facobj'
-    },{
-      t: 'mech'
-    },{
-      t: 'worker'
-    }],
-    gets: [{
-      faction: 'red',
-      t: 'charormech',
-      q: 1
-    },{
-      t: 'charormech',
-      q: 1
-    }],
+    move: [
+      { faction: 'purple', t: 'facobj' },
+      { t: 'mech' },
+      { t: 'worker' } ],
+    gets: [
+      { faction: 'red', t: 'charormech', q: 1 },
+      { t: 'charormech', q: 1 } ],
     enlist: []
   },{
-    move: [{
-      faction: 'purple',
-      type: 'facobj'
-    },{
-      t: 'mech'
-    }],
-    gets: [{
-      faction: 'black',
-      t: 'power',
-      q: 1
-    },{
-      t: 'gold',
-      q: 1
-    },{
-      t: 'charormech',
-      q: 1
-    }],
+    move: [
+      { faction: 'purple', type: 'facobj' },
+      { t: 'mech' }],
+    gets: [
+      { faction: 'black', t: 'power', q: 1 },
+      { t: 'gold', q: 1 },
+      { t: 'charormech', q: 1 } ],
     enlist: ['gold']
   }]
 },{
@@ -359,36 +228,21 @@ var cards = [{
     resources: 3
   },
   actions: [{
-    move: [{
-      faction: 'white',
-      t: 'facobj'
-    },{
-      t: 'mech'
-    },{
-      t: 'worker'
-    }],
-    gets: [{
-      t: 'worker',
-      q: 1
-    },{
-      t: 'charormech',
-      q: 1
-    }],
+    move: [
+      { faction: 'white', t: 'facobj' },
+      { t: 'mech' },
+      { t: 'worker' }],
+    gets: [
+      { t: 'worker',     q: 1 },
+      { t: 'charormech', q: 1 }],
     enlist: ['popularity']
   },{
-    move: [{
-      faction: 'white',
-      t: 'facobj'
-    },{
-      t: 'mech'
-    }],
-    gets: [{
-      t: 'power',
-      q: 3
-    },{
-      t: 'worker',
-      q: 1
-    }],
+    move: [
+      { faction: 'white', t: 'facobj' },
+      { t: 'mech' }],
+    gets: [
+      { t: 'power',  q: 3 },
+      { t: 'worker', q: 1 } ],
     enlist: ['popularity']
   }]
 },{
@@ -401,30 +255,18 @@ var cards = [{
     resources: 1
   },
   actions: [{
-    move: [{
-      t: 'mech'
-    },{
-      t: 'worker'
-    }],
-    gets: [{
-      t: 'charormech',
-      q: 1
-    },{
-      t: 'power',
-      q: 2
-    }],
+    move: [
+      { t: 'mech' },
+      { t: 'worker' }],
+    gets: [
+      { t: 'charormech', q: 1 },
+      { t: 'power',      q: 2 } ],
     enlist: []
   },{
-    move: [{
-      t: 'mech'
-    }],
-    gets: [{
-      t: 'gold',
-      q: 2
-    },{
-      t: 'charormech',
-      q: 1
-    }],
+    move: [{ t: 'mech' }],
+    gets: [
+      { t: 'gold',       q: 2 },
+      { t: 'charormech', q: 1 }],
     enlist: []
   }]
 },{
@@ -437,41 +279,23 @@ var cards = [{
     resources: 0
   },
   actions: [{
-    move: [{
-      t: 'mech'
-    },{
-      t: 'facobj'
-    },{
-      t: 'character'
-    }],
-    gets: [{
-      faction: 'red',
-      t: 'worker',
-      q: 1
-    },{
-      t: 'worker',
-      q: 1
-    },{
-      t: 'gold',
-      q: 1
-    }],
+    move: [
+      { t: 'mech' },
+      { t: 'facobj' },
+      { t: 'character' }],
+    gets: [
+      { faction: 'red', t: 'worker', q: 1 },
+      { t: 'worker', q: 1 },
+      { t: 'gold',   q: 1 } ],
     enlist: []
   },{
-    move: [{
-      faction: 'blue',
-      t: 'worker'
-    },{
-      t: 'facobj'
-    },{
-      t: 'character'
-    }],
-    gets: [{
-      t: 'power',
-      q: 3
-    },{
-      t: 'worker',
-      q: 1
-    }],
+    move: [
+      { faction: 'blue', t: 'worker' },
+      { t: 'facobj' },
+      { t: 'character' }],
+    gets: [
+      { t: 'power',  q: 3 },
+      { t: 'worker', q: 1 }],
     enlist: ['powercard']
   }]
 },{
@@ -484,34 +308,19 @@ var cards = [{
     resources: 1
   },
   actions: [{
-    move: [{
-      faction: 'blue',
-      t: 'worker'
-    },{
-      t: 'mech'
-    }],
-    gets: [{
-      t: 'power',
-      q: 4
-    }],
+    move: [
+      { faction: 'blue', t: 'worker' },
+      { t: 'mech' }],
+    gets: [{ t: 'power', q: 4 }],
     enlist: []
   },{
-    move: [{
-      faction: 'blue',
-      t: 'worker'
-    },{
-      t: 'mech'
-    }],
-    gets: [{
-      t: 'powercard',
-      q: 1
-    },{
-      t: 'gold',
-      q: 1
-    },{
-      t: 'charormech',
-      q: 1
-    }],
+    move: [
+      { faction: 'blue', t: 'worker' },
+      { t: 'mech' }],
+    gets: [
+      { t: 'powercard',  q: 1 },
+      { t: 'gold',       q: 1 },
+      { t: 'charormech', q: 1 } ],
     enlist: ['power']
   }]
 },{
@@ -524,39 +333,20 @@ var cards = [{
     resources: 0
   },
   actions: [{
-    move: [{
-      faction: 'black',
-      t: 'attack',
-      o: 'charormech',
-      p: 4
-    },{
-      t: 'facobj'
-    },{
-      t: 'character'
-    }],
-    gets: [{
-      t: 'gold',
-      q: 1
-    }],
+    move: [
+      { faction: 'black', t: 'attack', o: 'charormech', p: 4},
+      { t: 'facobj' },
+      { t: 'character' }],
+    gets: [{ t: 'gold', q: 1 }],
     enlist: []
   },{
-    move: [{
-      faction: 'black',
-      t: 'attack',
-      o: 'charormech',
-      p: 5
-    },{
-      t: 'facobj'
-    },{
-      t: 'character'
-    }],
-    gets: [{
-      t: 'powercard',
-      q: 1
-    },{
-      t: 'gold',
-      q: 2
-    }],
+    move: [
+      { faction: 'black', t: 'attack', o: 'charormech', p: 5 },
+      { t: 'facobj' },
+      { t: 'character' }],
+    gets: [
+      { t: 'powercard', q: 1 },
+      { t: 'gold', q: 2 }],
     enlist: ['gold']
   }]
 },{
@@ -569,34 +359,19 @@ var cards = [{
     resources: 0
   },
   actions: [{
-    move: [{
-      t: 'facobj'
-    },{
-      t: 'character'
-    }],
-    gets: [{
-      t: 'worker',
-      q: 1
-    },{
-      t: 'powercard',
-      q: 1
-    }],
+    move: [
+      { t: 'facobj' },
+      { t: 'character' }],
+    gets: [
+      { t: 'worker',    q: 1 },
+      { t: 'powercard', q: 1 }],
     enlist: ['powercard']
   },{
-    move: [{
-      t: 'attack',
-      o: 'charormech',
-      p: 7
-    },{
-      t: 'attack',
-      o: 'worker'
-    },{
-      t: 'mech'
-    }],
-    gets: [{
-      t: 'power',
-      q: 3
-    }],
+    move: [
+      { t: 'attack', o: 'charormech', p: 7},
+      { t: 'attack', o: 'worker' },
+      { t: 'mech' }],
+    gets: [{ t: 'power', q: 3 }],
     enlist: ['popularity']
   }]
 },{
@@ -609,40 +384,22 @@ var cards = [{
     resources: 2
   },
   actions: [{
-    move: [{
-      t: 'facobj'
-    },{
-      t: 'character'
-    }],
-    gets: [{
-      t: 'power',
-      q: 3
-    },{
-      t: 'gold',
-      q: 1
-    }],
+    move: [
+      { t: 'facobj' },
+      { t: 'character' }],
+    gets: [
+      { t: 'power', q: 3 },
+      { t: 'gold', q: 1 }],
     enlist: ['gold']
   },{
-    move: [{
-      t: 'attack',
-      o: 'charormech',
-      p: 1
-    },{
-      t: 'attack',
-      o: 'worker'
-    },{
-      t: 'facobj'
-    },{
-      t: 'character'
-    }],
-    gets: [{
-      faction: 'yellow',
-      t: 'gold',
-      q: 1
-    },{
-      t: 'gold',
-      q: 1
-    }],
+    move: [
+      { t: 'attack', o: 'charormech', p: 1},
+      { t: 'attack', o: 'worker' },
+      { t: 'facobj' },
+      { t: 'character' }],
+    gets: [
+      { faction: 'yellow', t: 'gold', q: 1 },
+      { t: 'gold', q: 1 }],
     enlist: ['powercard']
   }]
 },{
@@ -655,38 +412,20 @@ var cards = [{
     resources: 4
   },
   actions: [{
-    move: [{
-      t: 'facobj'
-    },{
-      t: 'character'
-    }],
-    gets: [{
-      t: 'charormech',
-      q: 1
-    }],
+    move: [
+      { t: 'facobj' },
+      { t: 'character' }],
+    gets: [{ t: 'charormech', q: 1 }],
     enlist: []
   },{
-    move: [{
-      t: 'attack',
-      o: 'charormech',
-      p: 5
-    },{
-      t: 'attack',
-      o: 'worker'
-    },{
-      t: 'mech'
-    }],
-    gets: [{
-      faction: 'black',
-      t: 'power',
-      q: 1
-    },{
-      t: 'charormech',
-      q: 1
-    },{
-      t: 'gold',
-      q: 1
-    }],
+    move: [
+      { t: 'attack', o: 'charormech', p: 5},
+      { t: 'attack', o: 'worker' },
+      { t: 'mech' }],
+    gets: [
+      { faction: 'black', t: 'power', q: 1 },
+      { t: 'charormech', q: 1 },
+      { t: 'gold', q: 1 }],
     enlist: []
   }]
 },{
@@ -699,40 +438,20 @@ var cards = [{
     resources: 2
   },
   actions: [{
-    move: [{
-      t: 'attack',
-      o: 'charormech',
-      p: 6
-    },{
-      t: 'attack',
-      o: 'worker'
-    },{
-      t: 'worker'
-    }],
-    gets: [{
-      t: 'gold',
-      q: 2
-    }],
+    move: [
+      { t: 'attack', o: 'charormech', p: 6 },
+      { t: 'attack', o: 'worker' },
+      { t: 'worker' }],
+    gets: [{ t: 'gold', q: 2 }],
     enlist: ['power']
   },{
-    move: [{
-      t: 'attack',
-      o: 'charormech',
-      p: 8
-    },{
-      t: 'worker'
-    }],
-    gets: [{
-      faction: 'yellow',
-      t: 'gold',
-      q: 1
-    },{
-      t: 'gold',
-      q: 1
-    },{
-      t: 'worker',
-      q: 1
-    }],
+    move: [
+      { t: 'attack', o: 'charormech', p: 8 },
+      { t: 'worker' }],
+    gets: [
+      { faction: 'yellow', t: 'gold', q: 1 },
+      { t: 'gold', q: 1 },
+      { t: 'worker', q: 1 }],
     enlist: ['popularity']
   }]
 },{
@@ -745,40 +464,22 @@ var cards = [{
     resources: 1
   },
   actions: [{
-    move: [{
-      t: 'facobj'
-    },{
-      t: 'character'
-    }],
-    gets: [{
-      faction: 'green',
-      t: 'worker',
-      q: 1
-    },{
-      t: 'worker',
-      q: 1
-    },{
-      t: 'gold',
-      q: 1
-    }],
+    move: [
+      { t: 'facobj' },
+      { t: 'character' }],
+    gets: [
+      { faction: 'green', t: 'worker', q: 1 },
+      { t: 'worker', q: 1 },
+      { t: 'gold', q: 1 }],
     enlist: []
   },{
-    move: [{
-      t: 'facobj'
-    },{
-      t: 'character'
-    }],
-    gets: [{
-      faction: 'green',
-      t: 'charormech',
-      q: 1
-    },{
-      t: 'worker',
-      q: 1
-    },{
-      t: 'gold',
-      q: 2
-    }],
+    move: [
+      { t: 'facobj' },
+      { t: 'character' }],
+    gets: [
+      { faction: 'green', t: 'charormech', q: 1 },
+      { t: 'worker', q: 1 },
+      { t: 'gold', q: 2 }],
     enlist: []
   }]
 },{
@@ -791,34 +492,19 @@ var cards = [{
     resources: 1
   },
   actions: [{
-    move: [{
-      t: 'attack',
-      o: 'worker'
-    },{
-      t: 'worker'
-    }],
-    gets: [{
-      t: 'worker',
-      q: 1
-    }],
+    move: [
+      { t: 'attack', o: 'worker' },
+      { t: 'worker' }],
+    gets: [{ t: 'worker', q: 1 }],
     enlist: []
   },{
-    move: [{
-      faction: 'green',
-      t: 'facobj'
-    },{
-      t: 'attack',
-      o: 'worker'
-    },{
-      t: 'worker'
-    }],
-    gets: [{
-      t: 'power',
-      q: 3
-    },{
-      t: 'gold',
-      q: 1
-    }],
+    move: [
+      { faction: 'green', t: 'facobj' },
+      { t: 'attack', o: 'worker' },
+      { t: 'worker' }],
+    gets: [
+      { t: 'power', q: 3 },
+      { t: 'gold', q: 1 }],
     enlist: ['powercard']
   }]
 }];

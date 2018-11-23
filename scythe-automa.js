@@ -5,17 +5,17 @@ var ICON_SD = 96;
 var FACTION_DD = 30;
 var FACTION_SD = 100;
 
-var tracker, stars, combatstars, powerstars, phase, deck, discards;
+var tracker, stars, combatstars, powerstars, phase, deck, discards, faction;
 
 var iconindex = [
-  'move', 'factory', 'turn', 'phase2', 'isolated', 'phase1', 'star', 'attack', 'ignore',
-  'popularity', 'gold', 'power', 'encounter', 'powercard', 'resource', 'enlist', 'mech',
-  'worker', 'character', 'charormech', 'facobj'
+  'move',     'factory',   'turn',    'phase2',    'isolated','phase1',
+  'star',     'attack',    'ignore',  'popularity','gold',    'power',
+  'encounter','powercard', 'resource','enlist',    'mech',    'worker',
+  'character','charormech','facobj'
 ];
 
-var factionindex = [
-  'black', 'blue', 'red', 'yellow', 'white', 'purple', 'green'
-];
+var factionindex   = [ 'black','blue','red','yellow','white','purple','green' ];
+var factionsprites = 'assets/factions-96x96.png';
 
 var fs = {
   dupe: function(obj) {
@@ -28,18 +28,24 @@ var fs = {
     return item;
   },
   renderAnnotation: function(t) {
-    return '<span class="card-annotation">'+t+'</span>';
+    var annotationClass = t.match(/\s*[\(\)]\s*/) !== null 
+      ? 'card-annotation parens'
+      : 'card-annotation';
+    return '<span class="'+annotationClass+'">'+t+'</span>';
   },
   renderFactionOption: function(f, t) {
     var html = fs.renderAnnotation('(');
-    html += '<canvas class="faction-canvas" data-faction-color="' + f + '" height="'+FACTION_DD+'" width="'+FACTION_DD+'"></canvas>';
+    html += '<canvas class="faction-canvas" data-faction-color="' + f 
+    html += '" height="'+FACTION_DD+'" width="'+FACTION_DD+'"></canvas>';
     html += t;
     html += fs.renderAnnotation(')');
     return html;
   },
   renderIcon: function(type, addClass) {
     var cl = typeof addClass == 'undefined' ? '' : addClass;
-    return '<canvas class="icon-canvas ' + cl + '"  data-icon-type="' + type + '" height="'+ICON_DD+'" width="'+ICON_DD+'"></canvas>';
+    return '<canvas class="icon-canvas ' 
+      + cl + '"  data-icon-type="' + type + '" height="' + ICON_DD + '" width="'
+      + ICON_DD + '"></canvas>';
   }
 };
 
@@ -90,6 +96,10 @@ var renderGetsAction = function(card, phase, index) {
   var pac = card.actions[phase].gets[index];
   var html = ""
   for (var i = 0; i < pac.q; i++) {
+    if (pac.q > 4){ 
+      html += ' <span class="card-annotation">'+pac.q;
+      html += 'x</span>'+fs.renderIcon(pac.t); 
+      break}
     html += fs.renderIcon(pac.t);
   }
   if (pac.faction)
@@ -206,14 +216,20 @@ var renderCanvas = function() {
 
   var factions = document.getElementsByClassName('faction-canvas');
   for (var i = 0; i < factions.length; i++) {
-    doDraw(factions[i], 'assets/factions-96x96.png', factionindex, 'data-faction-color', FACTION_SD, FACTION_DD);
+    factions[i].id == 'insignia' ? (dd = 48) : (dd = FACTION_DD);
+    doDraw(factions[i],
+      factionsprites,
+      factionindex,
+      'data-faction-color',
+      FACTION_SD, 
+      dd);
   }
 
 };
 
 var renderCombat = function(card) {
   var htmlCombat = '<table class="table is-narrow"><thead><tr>';
-  var arr = ['0-7', '8-13', '14+', 'P', 'R'];
+  var arr = ['0-7', '8-13', '14+', '', ''];
   for (var i = 0; i < arr.length; i++) {
     htmlCombat += '<th>' + arr[i] + '</th>'
   }
@@ -223,8 +239,15 @@ var renderCombat = function(card) {
     for (var i = 0; i < 3; i++) {
       htmlCombat += '<td>' + cc.spend[i] + '</td>'
     }
-    htmlCombat += '<td>' + cc.cards + '</td>';
-    htmlCombat += '<td>' + cc.resources + '</td>';
+
+    htmlCombat += '<td>';
+    for(var i = 0; i < cc.cards; i++) { 
+      htmlCombat += fs.renderIcon('powercard','combat-card') }
+    htmlCombat += '</td><td>';
+
+    for(var i = 0; i < cc.resources; i++) { 
+      htmlCombat += fs.renderIcon('resource','combat-card') }
+    htmlCombat += '</td>';
   } else {
     for (var i = 0; i < 5; i++) {
       htmlCombat += '<td></td>';
@@ -235,6 +258,8 @@ var renderCombat = function(card) {
   document.getElementById('deck-count').innerHTML = deck.length;
   document.getElementById('card-count').innerHTML = cards.length;
   document.getElementById('card-id').innerHTML = card.id + 1;
+
+  renderCanvas();
 };
 
 var findProfile = function(profiles, type) {
@@ -323,6 +348,9 @@ var resetGame = function() {
     main: [],
     battle: []
   };
+  faction = document.getElementById('faction-select').value;
+  document.getElementById('insignia').setAttribute('data-faction-color',faction);
+
   var difficulty = document.getElementById('difficulty').value;
   profile = findProfile(profiles, difficulty);
   renderTracker();
@@ -376,14 +404,13 @@ var normalCard = function() {
 
 var combatCard = function() {
   var card = takeCard();
-  renderNormal(card);
   renderCombat(card);
   renderIsCombat(true);
   discards.battle.push(card);
 };
 
 var checkLastCard = function() {
-  var card = lastCard();
+  var card  = lastCard();
   var phase = 0;
   for (var i = 0; i < profile.grid.length; i++) {
     if (profile.grid[i] < 2) continue;
