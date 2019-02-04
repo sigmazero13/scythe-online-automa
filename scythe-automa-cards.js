@@ -210,7 +210,7 @@ var cards = [
     enlist: []
   },{
     move: [
-      { faction: 'purple', type: 'facobj' },
+      { faction: 'purple', t: 'facobj' },
       { t: 'mech' }],
     gets: [
       { faction: 'black', t: 'power', q: 1 },
