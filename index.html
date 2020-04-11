@@ -43,6 +43,18 @@
             </select>
           </span>
         </p>
+        <p>
+          <span class="select is-pulled-left">
+            <select value="_" id="infra-mod" onChange="selectInfraMod();">
+              <option disabled="disabled">Select Infraestructure Modification</option>
+              <option value="0" selected>No Modification</option>
+              <option value="1">1: Star tracker +1 </option>
+              <option value="3">3: Remove Card 4</option>
+              <option value="4">4: Star tracker +1</option>
+              <option value="6">6: Remove card 15</option>
+            </select>
+          </span>
+        </p>
         <a id="start" class="button is-success is-pulled-right" onClick="startGame();">Start</a>
         <a class="button is-danger is-pulled-right" id='reset' onClick="resetGame();">Reset</a>
       </div>
