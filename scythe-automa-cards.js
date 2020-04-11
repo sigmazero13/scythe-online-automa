@@ -95,7 +95,7 @@ var defaultCards = [
     enlist: ['popularity'] 
   }]
 },{
-  id: 3,//////////4
+  id: 3,
   skip: true,
   star: false,
   combat: {
@@ -375,7 +375,7 @@ var defaultCards = [
     enlist: ['popularity']
   }]
 },{
-  id: 14,////////
+  id: 14,
   skip: false,
   star: true,
   combat: {
