@@ -21,7 +21,7 @@ var profiles = [
   grid: [1,1,1,1,1,1,1,1,2,1,1,2,1,2,1,2,2,2]}
 ];
 
-var cards = [
+var defaultCards = [
 {
   id: 0,
   skip: false,
@@ -73,7 +73,7 @@ var cards = [
       { t: 'powercard',  q: 1 },   
       { t: 'charormech', q: 1 } ],
     enlist: ['gold']
-  }] 
+  }]
 },{
   id: 2,
   skip: false,

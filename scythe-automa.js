@@ -50,6 +50,7 @@ var fs = {
 };
 
 var shuffleDeck = function() {
+  
   deck = fs.dupe(cards);
 };
 
@@ -295,6 +296,14 @@ var selectDifficulty = function() {
   return true;
 };
 
+var selectInfraMod = function() {
+  if (tracker > -1 || (stars > 0 && stars < 6))
+  renderTracker();
+  renderCanvas();
+  resetGame();
+  return true;
+};
+
 var startGame = function() {
   resetGame();
   document.getElementById('start').setAttribute('disabled', 'disabled');
@@ -338,7 +347,22 @@ var addPowerStar = function() {
 }
 
 var resetGame = function() {
+  inframod = parseInt(document.getElementById('infra-mod').value);
   tracker = 0;
+
+  //fenris
+  if (inframod >= 1) tracker++;
+  if (inframod >= 4) tracker++;
+
+  cards = defaultCards.slice();
+  if (inframod >= 3 && inframod < 6)
+    cards.splice(3,1);
+  else if (inframod >= 6)
+   {
+    cards.splice(3,1);
+    cards.splice(13,1);
+   };
+  console.log(cards);
   stars = 0;
   combatstars = 2;
   powerstars = 1;
