@@ -107,8 +107,7 @@ var defaultCards = [
     move: [{ t: 'worker' }],
     gets: [
       { faction: 'yellow', t: 'gold', q: 1 },   
-      { t: 'powercard', q: 1, },
-      { t: 'powercard' } ],
+      { t: 'powercard', q: 1, } ],
     enlist: ['powercard'] 
   },{ 
     move: [{ t: 'worker' } ],
