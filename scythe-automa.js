@@ -11,10 +11,10 @@ var iconindex = [
   'move',     'factory',   'turn',    'phase2',    'isolated','phase1',
   'star',     'attack',    'ignore',  'popularity','gold',    'power',
   'encounter','powercard', 'resource','enlist',    'mech',    'worker',
-  'character','charormech','facobj'
+  'character','charormech','facobj',  'nostar'
 ];
 
-var factionindex   = [ 'black','blue','red','yellow','white','purple','green' ];
+var factionindex   = [ 'black','blue','red','yellow','white','purple','green','cyan','orange' ];
 var factionsprites = 'assets/factions-96x96.png';
 
 var fs = {
@@ -129,6 +129,17 @@ var renderMoveAction = function(card, phase, index) {
   return html;
 };
 
+var renderCardStar = function(card, phase) {
+  var html = "";
+  if (card.star) {
+    html = fs.renderIcon('star');
+  } else {
+    html = fs.renderIcon('nostar');
+  }
+
+  return html;
+}
+
 var renderActionSet = function(card, phase, counter, render,
     outerjoin, innerjoin) {
   var ht = '';
@@ -158,11 +169,13 @@ var renderNormal = function(card, phaseOverride) {
       renderGetsAction, '');
     htmlEnlist = renderActionSet(card, doPhase, countEnlistActions,
       renderEnlistAction, '', ',');
+    htmlStar = renderCardStar(card, doPhase)
   }
 
   document.getElementById('normalCard-actions-move').innerHTML = htmlMove;
   document.getElementById('normalCard-actions-gets').innerHTML = htmlGets;
   document.getElementById('normalCard-actions-enlist').innerHTML = htmlEnlist;
+  document.getElementById('normalCard-star').innerHTML = htmlStar;
   document.getElementById('deck-count').innerHTML = deck.length;
   document.getElementById('card-count').innerHTML = cards.length;
   document.getElementById('card-id').innerHTML = card.id + 1;
