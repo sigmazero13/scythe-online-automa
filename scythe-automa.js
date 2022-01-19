@@ -161,7 +161,7 @@ var renderNormal = function(card, phaseOverride) {
   var doPhase = typeof phaseOverride == 'undefined' ? phase : phaseOverride;
 
   if (card.skip && profile.t == 'easy') {
-    htmlEnlist = htmlGets = htmlMove = 'Automa skips this round.';
+    htmlEnlist = htmlGets = htmlMove = htmlStar = 'Automa skips this round.';
   } else {
     htmlMove = renderActionSet(card, doPhase, countMoveActions,
       renderMoveAction, '', '<span class="card-annotation or-slash">/</span>');
