@@ -414,7 +414,7 @@ var normalCard = function() {
   if (checkEndGame()) return false;
   document.getElementById('playcard').setAttribute('disabled', 'disabled');
   var card = takeCard();
-  if (!card.skip) {
+  if (!(card.skip && profile.t == 'easy')) {
     if (card.star) tracker++;
     // Phase II should start -after- the star has been assigned, not before.
     var saphase = profile.grid[tracker - 1];
